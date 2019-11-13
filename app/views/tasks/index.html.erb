@@ -1,0 +1,14 @@
+<h1>TASKS</h1>
+
+  <% @tasks.each do |task| %>
+
+<form action="<%= tasks_path %>" method="post" class="task<%= task.id %>">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+<div class="form-group form-check m-0 ">
+  <% task.completed == true ? completed = "checked" : completed = "" %>
+    <input type="checkbox" class="form-check-input" id="task<%= task.id %>" name="checkbox" <%= completed %>>
+    <input type="text" value="<%= task.id %>" name="id" hidden>
+    <%= link_to task.title,  task_path(task)%>
+  </div>
+</form>
+<% end %>
